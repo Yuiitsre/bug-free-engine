@@ -1,0 +1,130 @@
+[
+  {
+    "id": "meadow",
+    "name": "Emerald Meadow",
+    "family": "temperate",
+    "color": "#4d8a61",
+    "roughness": 0.86,
+    "wildlife": [
+      "deer",
+      "hare",
+      "sheep"
+    ],
+    "structures": [
+      "village",
+      "farmstead"
+    ]
+  },
+  {
+    "id": "forest",
+    "name": "Silverpine Forest",
+    "family": "boreal",
+    "color": "#2f5847",
+    "roughness": 0.9,
+    "wildlife": [
+      "elk",
+      "fox",
+      "wolf"
+    ],
+    "structures": [
+      "watchtower",
+      "hunter_camp"
+    ]
+  },
+  {
+    "id": "wetland",
+    "name": "Mistfen",
+    "family": "wetland",
+    "color": "#42695d",
+    "roughness": 0.94,
+    "wildlife": [
+      "frog",
+      "heron",
+      "otter"
+    ],
+    "structures": [
+      "river_mill",
+      "boardwalk"
+    ]
+  },
+  {
+    "id": "highland",
+    "name": "Cloudstep Highlands",
+    "family": "alpine",
+    "color": "#6d7d87",
+    "roughness": 0.88,
+    "wildlife": [
+      "goat",
+      "eagle",
+      "marmot"
+    ],
+    "structures": [
+      "observatory",
+      "stone_outpost"
+    ]
+  },
+  {
+    "id": "desert",
+    "name": "Redglass Expanse",
+    "family": "arid",
+    "color": "#a36c49",
+    "roughness": 0.92,
+    "wildlife": [
+      "fox",
+      "vulture",
+      "lizard"
+    ],
+    "structures": [
+      "ruin",
+      "waystation"
+    ]
+  },
+  {
+    "id": "coast",
+    "name": "Bluewind Coast",
+    "family": "coastal",
+    "color": "#4c7a70",
+    "roughness": 0.76,
+    "wildlife": [
+      "crab",
+      "seal",
+      "gull"
+    ],
+    "structures": [
+      "dock",
+      "lighthouse_ruin"
+    ]
+  },
+  {
+    "id": "arcane",
+    "name": "Starfall Basin",
+    "family": "arcane",
+    "color": "#526a9b",
+    "roughness": 0.72,
+    "wildlife": [
+      "crystal_moth",
+      "owl",
+      "stag"
+    ],
+    "structures": [
+      "shrine",
+      "observatory"
+    ]
+  },
+  {
+    "id": "frost",
+    "name": "Frostpine Reach",
+    "family": "snow",
+    "color": "#7f98a8",
+    "roughness": 0.91,
+    "wildlife": [
+      "wolf",
+      "hare",
+      "mountain_goat"
+    ],
+    "structures": [
+      "frozen_camp",
+      "watchtower"
+    ]
+  }
+]
