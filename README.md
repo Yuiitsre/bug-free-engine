@@ -1,52 +1,81 @@
 # Lyrenthos
 
-## Phase 1 — Insular Genesis
+Lyrenthos is a Godot 4.x fantasy survival-sandbox prototype being built as an original game.
 
-This repository now contains the first real playable Lyrenthos world slice.
+## Run on Windows
 
-### Launch
+### Normal
 
-Run:
+Double-click:
 
 `run_game.bat`
 
-The launcher checks the Godot installation shown in the current development environment:
+The launcher automatically:
 
-`C:\\Users\\shukl\\Downloads\\Compressed`
+1. finds the actual `project.godot` even when the repository was extracted as `bug-free-engine-main`;
+2. finds your Godot 4.7.2 installation;
+3. creates a local Python `.venv`;
+4. installs required Python modules automatically;
+5. generates Phase 1 content;
+6. validates the project;
+7. starts the game directly.
 
-Expected executable:
+### Debug
 
-`Godot_v4.7.2-stable_win64.exe`
+Double-click:
 
-### Controls
+`run_debug.bat`
+
+This uses the Godot console executable so GDScript/runtime errors remain visible in the terminal.
+
+## Your current Godot location
+
+`C:\Users\shukl\Downloads\Compressed\Godot_v4.7.2-stable_win64.exe`
+
+If Godot is moved, edit `GODOT_DIR` in the launcher files.
+
+## Controls
 
 - WASD — move
 - Mouse — camera
 - Shift — sprint
 - Space — jump
 - Tab — inventory
-- Esc — close overlays / release mouse
+- Esc — close overlay / release mouse
 - E — interaction hook
 
-### Phase 1 systems
+## Python toolchain
 
-- deterministic procedural world
+The repository uses Python for offline development/content tooling, not real-time gameplay.
+
+Required modules are in `requirements.txt` and are installed automatically into:
+
+`.venv`
+
+Current tooling modules:
+- NumPy — deterministic procedural data analysis
+- Rich — readable generation/validation output
+
+The toolchain generates:
+- `data/biomes/*.json`
+- `data/generated/structures.json`
+- `data/generated/phase1_generation_report.json`
+
+## Phase 1 systems
+
+- deterministic procedural terrain
 - chunked ArrayMesh terrain
 - terrain collision
-- eight biomes
-- water channels
+- eight active biome identities
+- water channels / lowlands
 - vegetation MultiMesh
-- landmark structures
+- original landmark structures
 - title screen
-- inventory shell
-- settings panel
-- day/night clock
 - HUD
+- inventory shell
+- settings
+- day/night presentation
 
-### Python tooling
+## Original-game rule
 
-`tools/generate_phase1_data.py` generates the biome data files in `data/biomes/`.
-
-### Important
-
-Lyrenthos is an original project. Minecraft may be used only as a high-level gameplay reference. Do not copy proprietary Minecraft code, textures, models, sounds, animations, UI art, extracted data or branding.
+Lyrenthos must remain an original implementation. Minecraft may be studied for broad gameplay behavior only. Do not copy source code, extracted game data, textures, models, sounds, animations, UI art or branding.
