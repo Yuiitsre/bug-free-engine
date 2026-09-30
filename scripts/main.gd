@@ -324,7 +324,7 @@ func _height_at(gx: int, gz: int) -> float:
     var detail := detail_noise.get_noise_2d(x, z)
     var h := 9.0 + continental * 7.5 + ridge * 7.0 + detail * 1.35
 
-    var river_strength := 1.0 - clamp(absf(river_noise.get_noise_2d(x, z)) / 0.075, 0.0, 1.0)
+    var river_strength: float = 1.0 - clampf(absf(river_noise.get_noise_2d(x, z)) / 0.075, 0.0, 1.0)
     river_strength = pow(river_strength, 3.0)
 
     if river_strength > 0.03:
@@ -335,7 +335,7 @@ func _height_at(gx: int, gz: int) -> float:
 
 func _water_at(gx: int, gz: int) -> bool:
     var h := _height_at(gx, gz)
-    var river_strength := 1.0 - clamp(absf(river_noise.get_noise_2d(float(gx), float(gz))) / 0.075, 0.0, 1.0)
+    var river_strength: float = 1.0 - clampf(absf(river_noise.get_noise_2d(float(gx), float(gz))) / 0.075, 0.0, 1.0)
     return h < WORLD_WATER_LEVEL or pow(river_strength, 2.8) > 0.28
 
 func _biome_at(gx: int, gz: int) -> int:
