@@ -23,8 +23,8 @@ var moisture_noise := FastNoiseLite.new()
 var river_noise := FastNoiseLite.new()
 var structure_noise := FastNoiseLite.new()
 
-var terrain_material: StandardMaterial3D
-var water_material: StandardMaterial3D
+var terrain_material: Material
+var water_material: Material
 var dark_material: StandardMaterial3D
 var light_material: StandardMaterial3D
 var emissive_material: StandardMaterial3D
