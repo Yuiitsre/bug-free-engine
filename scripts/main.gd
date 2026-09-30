@@ -143,17 +143,13 @@ func _load_biome_data() -> void:
         ]
 
 func _build_materials() -> void:
-    terrain_material = StandardMaterial3D.new()
-    terrain_material.vertex_color_use_as_albedo = true
-    terrain_material.roughness = 0.88
-    terrain_material.metallic = 0.0
+    var terrain_shader := load("res://shaders/terrain_surface.gdshader") as Shader
+    terrain_material = ShaderMaterial.new()
+    (terrain_material as ShaderMaterial).shader = terrain_shader
 
-    water_material = StandardMaterial3D.new()
-    water_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-    water_material.albedo_color = Color(0.10, 0.42, 0.53, 0.58)
-    water_material.roughness = 0.12
-    water_material.metallic = 0.05
-    water_material.cull_mode = BaseMaterial3D.CULL_DISABLED
+    var water_shader := load("res://shaders/water_surface.gdshader") as Shader
+    water_material = ShaderMaterial.new()
+    (water_material as ShaderMaterial).shader = water_shader
 
     dark_material = StandardMaterial3D.new()
     dark_material.albedo_color = Color("#1a2228")
@@ -282,8 +278,8 @@ func _generate_chunk(chunk_coord: Vector2i) -> void:
 
             if front_h < h:
                 _add_side_face(terrain_vertices, terrain_normals, terrain_colors, terrain_uvs,
-                    Vector3(origin_x + local_x * CELL_SIZE, back_h, origin_z + (local_z + 1) * CELL_SIZE),
-                    Vector3(origin_x + (local_x + 1) * CELL_SIZE, back_h, origin_z + (local_z + 1) * CELL_SIZE),
+                    Vector3(origin_x + local_x * CELL_SIZE, front_h, origin_z + (local_z + 1) * CELL_SIZE),
+                    Vector3(origin_x + (local_x + 1) * CELL_SIZE, front_h, origin_z + (local_z + 1) * CELL_SIZE),
                     Vector3(origin_x + (local_x + 1) * CELL_SIZE, h, origin_z + (local_z + 1) * CELL_SIZE),
                     Vector3(origin_x + local_x * CELL_SIZE, h, origin_z + (local_z + 1) * CELL_SIZE),
                     Vector3(0, 0, 1), _biome_color(biome, gx, gz).darkened(0.10))
@@ -531,7 +527,7 @@ func _scatter_world_foliage() -> void:
 
     var leaf_instance := MultiMeshInstance3D.new()
     leaf_instance.multimesh = leaves
-    leaf_instance.material_override = terrain_material
+    leaf_instance.material_override = dark_material.duplicate()
     world_root.add_child(leaf_instance)
 
 func WORLD_RADIUS_CELLS() -> int:
