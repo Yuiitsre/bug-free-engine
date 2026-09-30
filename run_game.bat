@@ -142,7 +142,7 @@ echo Starting Lyrenthos...
 echo Project: !PROJECT_DIR!
 echo.
 
-"!GODOT_EXE!" --path "!PROJECT_DIR!" --editor-pid 0
+"!GODOT_EXE!" --path "!PROJECT_DIR!"
 
 if errorlevel 1 (
     echo.
