@@ -1,110 +1,126 @@
-# Lyrenthos AI Development Protocol
+# Lyrenthos AI Engineering Protocol
 
-## Purpose
-This repository is the implementation source for Lyrenthos. Future coding agents must extend the existing architecture instead of replacing it with disconnected prototypes.
+## Repository source of truth
 
-## Non-negotiable rules
-1. Do not copy Minecraft source, assets, extracted data, sounds, models, animations or UI.
-2. Study Minecraft only for high-level gameplay behavior and player expectations.
-3. Prefer data-driven definitions over hard-coded gameplay constants.
-4. Keep world generation deterministic: same seed + same generator version = same unmodified world.
-5. Keep player edits separate from generated terrain.
-6. Never use the rendered scene as the authoritative world database.
-7. All major systems need save/load behavior and deterministic tests before being expanded.
-8. Avoid per-frame iteration over large entity or machine collections.
-9. Use asynchronous generation for expensive world work, but commit scene-tree changes on the main thread unless a specific API is documented thread-safe.
-10. Every new feature must state its performance budget.
+This GitHub repository is the canonical implementation of Lyrenthos.
 
-## Phase gates
+AI agents must extend the current architecture rather than generating a parallel prototype.
 
-### Phase 1 — Genesis
-- procedural world foundation
-- five prototype biome identities
-- landmark structures
-- movement/input
-- inventory shell
-- deterministic seed
+## Current phase gate
 
-### Phase 2 — Living World
-- real chunk mesh
-- water and rivers
+### Phase 1 — Insular Genesis
+The project must boot into a title screen and launch into a deterministic third-person world containing:
+- chunked procedural terrain
+- multiple biome identities
+- water channels / lowlands
 - vegetation
-- animals
-- day/night
-- weather
-- persistence
+- landmark structures
+- movement
+- sprint
+- jump
+- Tab inventory
+- day/night presentation
 
-### Phase 3 — Survival
-- blocks
+### Phase 2 — Living Editable World
+Do not skip this architecture:
+- persistent block storage
+- editable terrain
+- chunk streaming
+- rivers/water improvements
+- real inventory
 - tools
 - gathering
-- inventory grid
-- crafting
-- food
+- wildlife
+- first night monsters
+- save/load
+
+### Phase 3 — Survival and Combat
 - health/stamina
-- first hostile mobs
+- food
+- crafting
+- equipment
+- hostile AI
+- caves
+- loot
 
 ### Phase 4 — Industry
 - machines
 - power
-- fluid networks
-- item logistics
-- automation signals
-- rail transport
+- fluids
+- logistics
+- signal networks
+- rails
 
 ### Phase 5 — Magic and Dimensions
-- arcane system
+- magic
 - portals
 - multiple dimensions
-- dimension-specific resources
 - bosses
 
-### Phase 6 — World Simulation
-- settlements
-- NPC schedules
-- economy
-- seasons
-- migration
-- world events
+## Engineering rules
 
-### Phase 7 — Multiplayer
-- authoritative server
-- replication
-- persistence
-- anti-cheat validation
+1. Do not copy Minecraft source, extracted game data, textures, sounds, models, animations or UI art.
+2. Minecraft may only be used as a gameplay-behavior reference.
+3. Prefer data-driven definitions.
+4. Keep generation deterministic.
+5. Separate generated world state from player edits.
+6. Never make the rendered scene the authoritative world database.
+7. Do not poll thousands of entities or machines every frame.
+8. Expensive generation should move to worker threads once the system grows; commit SceneTree changes on the main thread unless the specific API is documented as thread-safe.
+9. Every new system must specify save behavior.
+10. Every major system must specify multiplayer authority before multiplayer implementation begins.
+11. Every feature needs acceptance tests.
+
+## Visual quality rule
+
+Lyrenthos must look like one professionally directed game.
+
+Keep consistent:
+- scale
+- silhouettes
+- material response
+- lighting
+- UI
+- VFX
+- animation
+- audio
+
+Avoid generic AI-art aesthetics, inconsistent materials, excessive bloom, uncontrolled emissive surfaces and unrelated architectural styles.
+
+## Minecraft study protocol
+
+Allowed:
+- study how players understand block interaction
+- study broad resource/progression loops
+- study why chunk streaming works
+- study inventory/crafting ergonomics
+- study redstone-like automation as a genre solution
+
+Not allowed:
+- decompile and copy proprietary code
+- extract and reuse assets
+- copy game data
+- reuse Minecraft branding
+
+Write Lyrenthos requirements first, then implement an original Godot system.
 
 ## Task contract
-Every AI task should have:
+
+Each AI implementation task should declare:
 - SYSTEM
 - GOAL
 - INPUT DATA
-- RUNTIME DATA
-- SAVE DATA
-- NETWORK AUTHORITY
-- PERFORMANCE BUDGET
+- OUTPUT DATA
+- RUNTIME
+- SAVE
+- NETWORK
+- PERFORMANCE
 - TESTS
-- ACCEPTANCE CRITERIA
+- ACCEPTANCE
 
-## Visual quality
-Lyrenthos should use a consistent premium fantasy-sandbox style:
-- strong silhouettes
-- material readability
-- restrained emissive effects
-- varied but coherent roughness
-- atmospheric depth
-- handcrafted hero landmarks
-- original prop language
-- no generic AI-looking collage aesthetics
+## Current launcher expectation
 
-## Current Phase 1 acceptance
-A fresh clone with Godot 4.x available should open the project and expose:
-- procedural terrain
-- biome variation
-- three visible structures
-- third-person movement
-- sprint
-- jump
-- Tab inventory
-- reproducible seed
+On Windows, `run_game.bat` is configured around:
+`C:\\Users\\shukl\\Downloads\\Compressed\\Godot_v4.7.2-stable_win64.exe`
 
-The prototype is intentionally temporary. Phase 2 replaces the column renderer with a production chunk mesh and introduces proper world streaming.
+The launcher must directly start the project.
