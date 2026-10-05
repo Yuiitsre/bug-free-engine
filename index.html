@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071421">
+<title>Windows 11 Desktop Demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="desktop" aria-label="Windows 11 desktop">
+  <div class="wallpaper-glow glow-a"></div><div class="wallpaper-glow glow-b"></div>
+  <div id="desktopIcons" class="desktop-icons">
+    <button class="desktop-icon" data-open="explorer"><span class="icon">📁</span><span>This PC</span></button>
+    <button class="desktop-icon" data-open="browser"><span class="icon">🌐</span><span>Microsoft Edge</span></button>
+    <button class="desktop-icon" data-open="notepad"><span class="icon">📝</span><span>Notes</span></button>
+    <button class="desktop-icon" data-open="settings"><span class="icon">⚙️</span><span>Settings</span></button>
+    <button class="desktop-icon" data-open="calculator"><span class="icon">🧮</span><span>Calculator</span></button>
+  </div>
+
+  <main id="windowLayer"></main>
+
+  <section id="startMenu" class="flyout start-menu hidden">
+    <div class="start-head"><div class="search-box"><span>⌕</span><input id="startSearch" placeholder="Search for apps, settings, and files"></div></div>
+    <div class="start-tabs"><button class="tab active">Pinned</button><button class="tab">All apps</button></div>
+    <div class="section-head"><b>Pinned</b><span>All apps ›</span></div>
+    <div class="pinned-grid">
+      <button data-open="explorer"><span>📁</span><small>File Explorer</small></button><button data-open="browser"><span>🌐</span><small>Edge</small></button>
+      <button data-open="settings"><span>⚙️</span><small>Settings</small></button><button data-open="notepad"><span>📝</span><small>Notepad</small></button>
+      <button data-open="calculator"><span>🧮</span><small>Calculator</small></button><button data-open="store"><span>▣</span><small>Store</small></button>
+      <button data-open="photos"><span>🌄</span><small>Photos</small></button><button data-open="terminal"><span>›_</span><small>Terminal</small></button>
+      <button data-open="clock"><span>◷</span><small>Clock</small></button><button data-open="paint"><span>🎨</span><small>Paint</small></button>
+      <button data-open="taskmgr"><span>▥</span><small>Task Manager</small></button><button data-open="about"><span>ⓘ</span><small>About</small></button>
+    </div>
+    <div class="section-head"><b>Recommended</b><span>More ›</span></div>
+    <div class="recommended">
+      <button data-open="notepad"><span>📝</span><div><b>Project Notes.txt</b><small>Recently edited</small></div></button>
+      <button data-open="explorer"><span>📥</span><div><b>Downloads</b><small>3 new items</small></div></button>
+      <button data-open="browser"><span>🌐</span><div><b>Windows reference</b><small>Opened yesterday</small></div></button>
+      <button data-open="settings"><span>⚙️</span><div><b>Windows Update</b><small>Checked today</small></div></button>
+    </div>
+    <div class="start-footer"><div class="account"><span class="avatar">DS</span><span>Deepanshu</span></div><div><button id="lockBtn" class="round">🔒</button><button id="powerBtn" class="round">⏻</button></div></div>
+  </section>
+
+  <section id="searchPanel" class="flyout search-panel hidden">
+    <h3>Search</h3>
+    <div class="search-box"><span>⌕</span><input id="globalSearch" placeholder="Type here to search"></div>
+    <div id="searchResults" class="search-results"></div>
+  </section>
+
+  <section id="quickPanel" class="flyout quick-panel hidden">
+    <h3>Quick settings</h3>
+    <div class="quick-grid">
+      <button class="quick-tile on" data-toggle><b>◉ Wi‑Fi</b><small>Connected</small></button>
+      <button class="quick-tile on" data-toggle><b>♢ Bluetooth</b><small>On</small></button>
+      <button class="quick-tile" data-toggle><b>✈ Airplane mode</b><small>Off</small></button>
+      <button class="quick-tile" data-toggle><b>▰ Battery saver</b><small>Off</small></button>
+    </div>
+    <label class="slider-label">🔊 Volume <b id="volumeValue">62</b></label><input id="volume" type="range" min="0" max="100" value="62">
+    <label class="slider-label">☀ Brightness <b id="brightnessValue">84</b></label><input id="brightness" type="range" min="10" max="100" value="84">
+  </section>
+
+  <section id="notificationsPanel" class="flyout notifications hidden">
+    <h3>Notifications</h3>
+    <article><small>Windows Security · now</small><b>Your device is protected</b><p>No action required in this simulation.</p></article>
+    <article><small>Windows Update · 5 min</small><b>You're up to date</b><p>Last checked just now.</p></article>
+    <article><small>Tips · today</small><b>Try window controls</b><p>Drag, resize, minimize, or double-click a title bar.</p></article>
+  </section>
+
+  <section id="taskView" class="task-view hidden">
+    <div class="task-view-head"><h2>Task view</h2><button id="closeTaskView" class="tab active">Close</button></div>
+    <div id="taskGrid" class="task-grid"></div>
+    <div class="section-head desktop-head"><b>Desktops</b></div>
+    <div class="desktop-list"><button class="desktop-card active"><b>Desktop 1</b><small>Current workspace</small></button><button class="desktop-card"><b>Desktop 2</b><small>New desktop</small></button><button class="desktop-card"><b>＋</b><small>Create desktop</small></button></div>
+  </section>
+
+  <div id="contextMenu" class="context-menu hidden">
+    <button data-context="new">New <span>›</span></button><button data-context="display">Display settings</button><button data-context="personalize">Personalize</button><button data-context="refresh">Refresh</button><hr><button data-context="terminal">Open in Terminal</button><button data-context="about">About this demo</button>
+  </div>
+
+  <div id="toastStack" class="toast-stack"></div>
+
+  <section id="lockScreen" class="lock-screen hidden">
+    <div><div id="lockTime" class="lock-time"></div><div id="lockDate" class="lock-date"></div><div class="lock-user"><span class="avatar large">DS</span><b>Deepanshu</b><small>Click anywhere or press Enter to unlock</small></div></div>
+  </section>
+
+  <nav id="taskbar">
+    <div class="taskbar-center">
+      <button id="startBtn" class="task-btn" title="Start"><span class="ms-logo"><i></i><i></i><i></i><i></i></span></button>
+      <button id="searchBtn" class="task-btn" title="Search"><span class="search-glyph"></span></button>
+      <button id="taskViewBtn" class="task-btn" title="Task view"><span class="task-glyph"></span></button>
+      <button data-open="explorer" class="task-btn" title="File Explorer">📁</button>
+      <button data-open="browser" class="task-btn" title="Microsoft Edge">🌐</button>
+      <button data-open="notepad" class="task-btn" title="Notepad">📝</button>
+      <button data-open="settings" class="task-btn" title="Settings">⚙️</button>
+      <button data-open="calculator" class="task-btn" title="Calculator">🧮</button>
+    </div>
+    <div class="tray">
+      <button id="wifiTray" class="tray-btn">◉</button><button id="soundTray" class="tray-btn">🔊</button><button id="batteryTray" class="tray-btn">▰</button>
+      <button id="timeTray" class="tray-btn clock-btn"><b id="trayTime">12:00</b><small id="trayDate">06/10/2026</small></button>
+      <button id="notifyTray" class="tray-btn">▢</button>
+    </div>
+  </nav>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
